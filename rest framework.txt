@@ -1,0 +1,85 @@
+private-
+partner-
+public-
+
+api - You have application in web and you're are creating an android app for same, what services the web application
+is providing that you will use in android app , so to avoid the different db and more works, common thing for both is created, an api that can communicate with all apps.
+
+Use case - you're creating a web app that shows the best deal to buy products , that will use flipkart, myntra, amazon, jio mart api to show the best price .
+
+
+A-Serialization-
+	Serializers are used to convert complex data types, such as Django model instances, into Python data types that can be easily rendered into JSON, XML, or other content types. 
+    Serializers also provide deserialization, allowing parsed data to be converted back into complex types after first validating the incoming data. 
+    Serializers in Django are a part of the Django REST framework, a powerful and flexible toolkit for building Web APIs.
+
+B-Model instance and query sets are complex data types. (difference)
+
+C-Common steps:
+    create a Model.
+    register in admin.py.
+    superuser to display.
+    create a Serializers.py. - The purpose of this serializer is to convert data from Python objects
+     (in this case, a Student model instance) into a format (such as JSON) that can be easily rendered into HTTP responses or parsed from incoming HTTP requests.
+     It also handles validation of the incoming data based on the serializer field definitions.
+
+D- Validated Data:
+    In Django REST Framework, during serialization or deserialization, the validated_data variable is a validated dictionary containing the deserialized data after validation.
+def update(self, instance, validated_data):
+validated_data is new data from user after updation.
+instance is old data stored in database.
+
+E- json.dumps to convert python data into JSON string
+
+F-def create method,
+        The create method is used in serializers when saving data. It's invoked during the serializer.save() operation, usually in viewsets or other parts of the application where data needs to be persisted.
+        Student.objects.create(**validated_data): This line creates a new instance of the Student model using the create method provided by Django's ORM (Object-Relational Mapper).
+        The **validated_data syntax is used to unpack the dictionary validated_data into keyword arguments. Each key-value pair in validated_data corresponds to a field in the Student model, and this 
+
+G- myapp.py
+    sending the request , and storing the responses
+    while sending the request we will specify our url-- views.py that is our function
+    in function we will get json data and parse it into python.
+    and python data is our dictionary , we will apply get method to get value from dic.
+    and than we can apply logic and send the Json  response to myapp.py by serializing it.
+
+H-For CRUD API , 
+    we have make myapp.py post, update, delete and get function we have make.
+    for create and update we have define function serializers class.
+    create(self, validated_data): This method is responsible for creating a new instance of the associated model with the provided validated data. 
+    In your example, it creates a new Student instance using the Student.objects.create(**validated_data) method.
+
+    update(self, instance, validated_data): This method is used when you want to update an existing instance with new data.
+    It takes the existing instance and the validated_data to update the fields of that instance based on the provided data.
+    
+    The serializers primarily handle the serialization, deserialization, validation, creation, and updating of data, while views handle the HTTP methods and their corresponding actions.
+
+I- Field Level validation  acess to Single Field,
+    Object Level Validation
+        When we need to do validation that requires access to multiple fields we
+        do object level validation by adding a method called validate() to
+        Serializer subclass.
+    Validator attribute
+
+    priority: validators>field level > Object level
+
+
+J- Model Serializer  Gs7 checking for readonly:
+
+class StudentSerializer(serializers.ModelSerializer):
+    # name=serializers.CharField(read_only=True)
+    class Meta:
+        model=Student
+        fields=['name','roll','city']
+        # read_only_fields=['name','roll']
+        extra_kwargs={'name':{'read_only':True}}
+
+K- Model Serializer  Gs8 validators
+L- Function Based API view gs11
+M- Class Based API view gs12
+N-Gs13,14 Generic api with Mixin
+O-Gs15,16 Concrete View Class// CRUD next lvl implementation
+P-Gs17 View set , to easily resue common logic and to add router 
+Q-Gs18 ModelViewSet // requires only 2 line of code for crud operation
+R-Gs19 Readonly mode in ModelViewSet.
+
