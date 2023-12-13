@@ -85,5 +85,5 @@ R-Gs19 Readonly mode in ModelViewSet.
 S-Gs20 Authentication to api , BasicAuthentication(username, password), Permission_classes=['AllowAny','IsAdminUser','IsAuthenticated'] #IsAdminUser jiska staff true hoga wahi
 T-GS21 SessionAuthentication
 U-GS22 DjangoModelUserPermission (we can add object permission to user object(create, add, delete, view)etc).
-
-
+V-Gs23 Adding Permission in FunctionBasedApiView (importing decorators)
+W----------------------------TokenAuthentication Important-------------------------
