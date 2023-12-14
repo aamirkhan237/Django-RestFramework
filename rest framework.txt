@@ -87,3 +87,8 @@ T-GS21 SessionAuthentication
 U-GS22 DjangoModelUserPermission (we can add object permission to user object(create, add, delete, view)etc).
 V-Gs23 Adding Permission in FunctionBasedApiView (importing decorators)
 W----------------------------TokenAuthentication Important-------------------------
+       Gs24             generating token for both user using cli as well as using admin app
+X-Gs25 Client Requesting Token after authenticating 
+        http POST http://127.0.0.1:8000/gettoken/ username="user1" password="geekshow"
+Y-Gs26 Generating token along with user email and user_id auth.py drf obtainauthtoken by exposing api 
+        
