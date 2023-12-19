@@ -93,4 +93,22 @@ X-Gs25 Client Requesting Token after authenticating
 Y-Gs26 Generating token along with user email and user_id auth.py drf obtainauthtoken by exposing api 
         
 Y-Gs29 Custom Authentication 
-Z-gs30 JWT
+Z-gs30 JWT 
+        http POST  http://127.0.0.1:8000/gettoken/ username="user1" password="geekshow" 
+        access token is valid for  5 min
+        after 5 min it is expired , u can verify it.-->  "code": "token_not_valid" "detail": "Token is invalid or expired
+        refresh token is valid for 1 day and you can generate new access token from it.
+        http POST http://127.0.0.1:8000/refreshtoken/ refresh="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMjcwNzc3MiwiaWF0IjoxNzAyNjIxMzcyLCJqdGkiOiJhMjAzYTZhYmM4MTM0NzgxYjExMTJkZDQ0NWI1MWZhYyIsInVzZXJfaWQiOjJ9.znhKjscst38kE1GnTPNpLbJurBdKe5hKym7LvRHm7aY"
+
+        JWT.io - jwt token is divSided into three parts header, jwt token and 256 bit code.
+
+        http http://127.0.0.1:8000/studentapi/ 'Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNjIzMTU4LCJpYXQiOjE3MDI2MjEzNzIsImp0aSI6IjMzYWVmZmVjNTg1ZjQ1MDZiNmY2MmFjOTdhMjIyNzU1IiwidXNlcl9pZCI6Mn0.Fnxi_9H-fx9s-x7wARGMGdbAtBObPM8L9SxO0uIzWag'
+        http http://127.0.0.1:8000/studentapi/ 'Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyNjIzOTM3LCJpYXQiOjE3MDI2MjEzNzIsImp0aSI6ImI1ZjZmNTQ0MDY1MDQwMTNhYTYwMDZkYjU2OGQ2ZTZlIiwidXNlcl9pZCI6Mn0.1Q5-qIF2QMkjOwMqcbJZBbpQbttZW_5_hj_not3PGiE'
+        http -f POST http://127.0.0.1:8000/studentapi/ name=xyz roll=dd city=dhd ..
+        http PUT http://127.0.0.1:8000/studentapi/3/
+        http DELETE http://127.0.0.1:8000/studentapi/3/
+
+gs31-Throttling (making requests to api ) we can limit the number of requets to api for both authenticated user and anonymous user(anon).
+    Unauthencticated user requests will fallback to using IP address of incoming request to generate unique key to throttle against.
+    
+    ScopedRateThrottle(to limit specific part of api)
