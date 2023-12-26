@@ -112,3 +112,9 @@ gs31-Throttling (making requests to api ) we can limit the number of requets to 
     Unauthencticated user requests will fallback to using IP address of incoming request to generate unique key to throttle against.
     
     ScopedRateThrottle(to limit specific part of api)
+
+*************     'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]  ---> browserable api will be gone
+**************
+
